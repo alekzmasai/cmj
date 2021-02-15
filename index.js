@@ -279,7 +279,7 @@ function orderFields(order_id, product_id, product_id_item){
             "order": {
                 "fields_values_attributes": [
                     {
-                        'field_id': 13896766,
+                        'field_id': 25855226,
                         'value': `${product_id_item}`
                     }
                 ]
