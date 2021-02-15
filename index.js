@@ -150,6 +150,7 @@ var interval = setInterval(function() {
 
 
 function GetOrders(orders) {
+    console .log('1');
     var mas = [];
     for (let i = 0; i < orders.length; i++) {
         var product_id = orders[i].product_id;
@@ -163,6 +164,7 @@ function GetOrders(orders) {
 }
 
 function TESTSupplementaries(product_id, first_screan, order_id, mongo_id, product_id_item){
+    console .log('1');
     if (first_screan.length == 0) {
         ORDER.deleteOne({
                 _id: mongo_id
@@ -191,6 +193,7 @@ function TESTSupplementaries(product_id, first_screan, order_id, mongo_id, produ
 
 
 function AvailProduct(product_id, order_id, mongo_id, product_id_item){
+    console .log('1');
 
 
 
@@ -222,7 +225,8 @@ function AvailProduct(product_id, order_id, mongo_id, product_id_item){
 
 
 
-function DataBaseUpDate(product_id, order_id, mongo_id, product_id_item) {
+function DataBaseUpDate(product_id, order_id, mongo_id, product_id_item)  {
+    console .log('1');
     ORDER.find({
         _id: mongo_id
     }, function(err, orders) {
@@ -273,13 +277,13 @@ function DataBaseUpDate(product_id, order_id, mongo_id, product_id_item) {
 
 
 function orderFields(order_id, product_id, product_id_item){
-
+console .log('1');
     const promise_orderFields = order_id => new Promise((resolves, rejects) => {
          var fields_values_attributes = {
             "order": {
                 "fields_values_attributes": [
                     {
-                        'field_id': 25855226,
+                        'field_id': 13896766,
                         'value': `${product_id_item}`
                     }
                 ]
@@ -298,13 +302,13 @@ function orderFields(order_id, product_id, product_id_item){
         });
     })
 
-    promise_orderFields(order_id).then(resolves => console.log(123), rejects => console.log(rejects))
+    promise_orderFields(order_id).then(resolves => console.log(123), rejects => console.log(rejects)) 
 
 }
 
 
 function SetStatus(order_id){
-
+console .log('1');
 
     const promise_Status = order_id => new Promise((resolves, rejects) => {
        
