@@ -194,7 +194,7 @@ function TESTSupplementaries(product_id, first_screan, order_id, mongo_id, produ
 
 function AvailProduct(product_id, order_id, mongo_id, product_id_item){
     console .log('44');
-
+    console .log('product_id: ' + product_id);
 
 
     const promise_product = product_id => new Promise((resolves, rejects) => {
