@@ -165,12 +165,12 @@ function GetOrders(orders) {
 
 function TESTSupplementaries(product_id, first_screan, order_id, mongo_id, product_id_item){
     console .log('33');
-    if (first_screan.length == 0) {
-        ORDER.deleteOne({
-                _id: mongo_id
-        }, function(err, orders) {console.log('remove')});
-        return true
-    }
+   // if (first_screan.length == 0) {
+     //   ORDER.deleteOne({
+       //         _id: mongo_id
+      //  }, function(err, orders) {console.log('remove')});
+       // return true
+   // }
     for (let i = 0; i < first_screan.length; i++) {
         AvailProduct(first_screan[i], order_id, mongo_id, product_id_item)
     }  
