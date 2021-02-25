@@ -111,32 +111,32 @@ function IsJsonString(str) {
 
 
 
-
-// function Product_Available(item, order_id){
-//     Request(`https://${id}:${key}@shop-cn677.myinsales.ru/admin/products/${item}.json`, (err, response, body) => {
-//         if (IsJsonString(response.body)) {
-//             var productsResponce = JSON.parse(response.body);
-//             var properties = productsResponce.properties;
-//             var product_id = productsResponce.id;
-//             for (var prop in properties) {
-//               if (properties[prop].permalink == 'dostupnost') {
-//                 DataBaseUpDate(order_id, item)
-//               }
-//             }
-//         }
-//    });
-// }
-
-
+//
+function Product_Available(item, order_id){
+     Request(`https://${id}:${key}@shop-cn677.myinsales.ru/admin/products/${item}.json`, (err, response, body) => {
+        if (IsJsonString(response.body)) {
+             var productsResponce = JSON.parse(response.body);
+             var properties = productsResponce.properties;
+            var product_id = productsResponce.id;
+            for (var prop in properties) {
+               if (properties[prop].permalink == 'dostupnost') {
+                DataBaseUpDate(order_id, item)
+               }
+             }
+         }
+    });
+ }
 
 
 
 
 
-// function first_screan(obj){
-//     console.log(obj)
-// }
 
+
+ function first_screan(obj){
+     console.log(obj)
+ }
+//
 
 
 
