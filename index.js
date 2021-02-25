@@ -133,9 +133,9 @@ function Product_Available(item, order_id){
 
 
 
- function first_screan(obj){
-     console.log(obj)
- }
+// function first_screan(obj){
+   //  console.log(obj)
+ // }
 //
 
 
