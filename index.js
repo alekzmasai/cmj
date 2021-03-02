@@ -57,6 +57,9 @@ app.get("/wakemydyno.txt", function(request, response) {
 
 
 function DataBaseUpload(request, response) {
+    
+    console.log(req_body.message + ', order_id: ' + req_body.order_id);
+    
     let req_body = JSON.parse(JSON.stringify(request.body));
 
     let product_id = req_body.product_id;
