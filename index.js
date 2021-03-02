@@ -111,21 +111,21 @@ function IsJsonString(str) {
 
 
 
-//
-function Product_Available(item, order_id){
-     Request(`https://${id}:${key}@shop-cn677.myinsales.ru/admin/products/${item}.json`, (err, response, body) => {
-        if (IsJsonString(response.body)) {
-             var productsResponce = JSON.parse(response.body);
-             var properties = productsResponce.properties;
-            var product_id = productsResponce.id;
-            for (var prop in properties) {
-               if (properties[prop].permalink == 'dostupnost') {
-                DataBaseUpDate(order_id, item)
-               }
-             }
-         }
-    });
- }
+
+// function Product_Available(item, order_id){
+//     Request(`https://${id}:${key}@shop-cn677.myinsales.ru/admin/products/${item}.json`, (err, response, body) => {
+//         if (IsJsonString(response.body)) {
+//             var productsResponce = JSON.parse(response.body);
+//             var properties = productsResponce.properties;
+//             var product_id = productsResponce.id;
+//             for (var prop in properties) {
+//               if (properties[prop].permalink == 'dostupnost') {
+//                 DataBaseUpDate(order_id, item)
+//               }
+//             }
+//         }
+//    });
+// }
 
 
 
@@ -134,9 +134,9 @@ function Product_Available(item, order_id){
 
 
 // function first_screan(obj){
-   //  console.log(obj)
- // }
-//
+//     console.log(obj)
+// }
+
 
 
 
@@ -150,7 +150,6 @@ var interval = setInterval(function() {
 
 
 function GetOrders(orders) {
-    console .log('GetOrders');
     var mas = [];
     for (let i = 0; i < orders.length; i++) {
         var product_id = orders[i].product_id;
@@ -164,16 +163,14 @@ function GetOrders(orders) {
 }
 
 function TESTSupplementaries(product_id, first_screan, order_id, mongo_id, product_id_item){
-    console .log('TESTSupplementaries');
-   // if (first_screan.length == 0) {
-     //   ORDER.deleteOne({
-       //         _id: mongo_id
-      //  }, function(err, orders) {console.log('remove')});
-       // return true
-   // }
+    if (first_screan.length == 0) {
+        ORDER.deleteOne({
+                _id: mongo_id
+        }, function(err, orders) {console.log('remove')});
+        return true
+    }
     for (let i = 0; i < first_screan.length; i++) {
         AvailProduct(first_screan[i], order_id, mongo_id, product_id_item)
-        console .log('AvailProduct');
     }  
 }
 
@@ -194,8 +191,7 @@ function TESTSupplementaries(product_id, first_screan, order_id, mongo_id, produ
 
 
 function AvailProduct(product_id, order_id, mongo_id, product_id_item){
-    console .log('44');
-    console .log('product_id: ' + product_id);
+
 
 
     const promise_product = product_id => new Promise((resolves, rejects) => {
@@ -226,8 +222,7 @@ function AvailProduct(product_id, order_id, mongo_id, product_id_item){
 
 
 
-function DataBaseUpDate(product_id, order_id, mongo_id, product_id_item)  {
-    console .log('55');
+function DataBaseUpDate(product_id, order_id, mongo_id, product_id_item) {
     ORDER.find({
         _id: mongo_id
     }, function(err, orders) {
@@ -278,7 +273,7 @@ function DataBaseUpDate(product_id, order_id, mongo_id, product_id_item)  {
 
 
 function orderFields(order_id, product_id, product_id_item){
-console .log('66');
+
     const promise_orderFields = order_id => new Promise((resolves, rejects) => {
          var fields_values_attributes = {
             "order": {
@@ -303,13 +298,13 @@ console .log('66');
         });
     })
 
-    promise_orderFields(order_id).then(resolves => console.log(123), rejects => console.log(rejects)) 
+    promise_orderFields(order_id).then(resolves => console.log(123), rejects => console.log(rejects))
 
 }
 
 
 function SetStatus(order_id){
-console .log('77');
+
 
     const promise_Status = order_id => new Promise((resolves, rejects) => {
        
