@@ -62,6 +62,7 @@ function DataBaseUpload(request, response) {
     let req_body = JSON.parse(JSON.stringify(request.body));
  console.log(req_body.message + ', order_id: ' + req_body.order_id);
     console.log('product: ' + req_body.products);
+    console.log('product: ' + req_body.product_id);
     let product_id = req_body.product_id;
     let products = req_body.products;
 
