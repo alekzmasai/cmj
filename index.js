@@ -74,9 +74,7 @@ function DataBaseUpload(request, response) {
         }, (err, response, body) => {
             if (IsJsonString(response.body)) {
                     var supplementaries = JSON.parse(response.body)
-                    if (products == '') {
-                        return false
-                    }
+                   
                     products = products.split(',');
                     var product_not_available =  Object.assign([], supplementaries);
                     for (let i = 0; i < supplementaries.length; i++) {
