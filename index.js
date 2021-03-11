@@ -166,11 +166,9 @@ function GetOrders(orders) {
 
 function TESTSupplementaries(product_id, first_screan, order_id, mongo_id, product_id_item){
     if (first_screan.length == 0) {
-        ORDER.deleteOne({
-                _id: mongo_id
-        }, function(err, orders) {console.log('remove')});
-        return true
-    }
+   console.log('Пытаюсь удалить');
+        return true;
+}
     for (let i = 0; i < first_screan.length; i++) {
         AvailProduct(first_screan[i], order_id, mongo_id, product_id_item)
     }  
