@@ -229,9 +229,10 @@ function DataBaseUpDate(product_id, order_id, mongo_id, product_id_item) {
         if (err) return console.error(err);
         
        if (orders[0].first_screan.length == 0) {
-         ORDER.deleteOne({
-            _id: mongo_id
-        }, function(err, orders) {console.log('remove')});
+           console.log('Не могу удалить');
+       //  ORDER.deleteOne({
+        //    _id: mongo_id
+        //}, function(err, orders) {console.log('remove')});
         
         } else {
             var arr = orders[0].first_screan;
