@@ -6,7 +6,7 @@ const urlencodedParser = bodyParser.urlencoded({
     extended: false
 });
 const PORT = process.env.PORT || 80;
-const uri = "mongodb+srv://cmj:cmj123@cluster0.ksqhm.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const uri = "mongodb+srv://cmj:cmj123@cluster0.ksqhm.mongodb.net/<orders>?retryWrites=true&w=majority";
 const mongoose = require('mongoose');
 const ORDER = mongoose.model('ORDER', {
     order_id: String,
