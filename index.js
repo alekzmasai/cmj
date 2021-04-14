@@ -198,6 +198,7 @@ function AvailProduct(product_id, order_id, mongo_id, product_id_item){
         var obj = {}
 
         Request(`https://${id}:${key}@shop-cn677.myinsales.ru/admin/products/${product_id}.json`, (err, response, body) => {
+            console.log(err);
             if (IsJsonString(response.body)) {
                 var productsResponce = JSON.parse(response.body);
                 if (productsResponce.is_hidden) {
