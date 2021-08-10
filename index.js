@@ -6,7 +6,7 @@ const urlencodedParser = bodyParser.urlencoded({
     extended: false
 });
 const PORT = process.env.PORT || 80;
-const uri = "mongodb+srv://cmj:cmj123@cluster0.ksqhm.mongodb.net/<orders>?retryWrites=true&w=majority";
+const uri = "mongodb+srv://cmj:cmj123@cluster0.ksqhm.mongodb.net/<dbname>?retryWrites=true&w=majority";
 const mongoose = require('mongoose');
 const ORDER = mongoose.model('ORDER', {
     order_id: String,
@@ -57,12 +57,8 @@ app.get("/wakemydyno.txt", function(request, response) {
 
 
 function DataBaseUpload(request, response) {
-    
-   
     let req_body = JSON.parse(JSON.stringify(request.body));
- console.log(req_body.message + ', order_id: ' + req_body.order_id);
-    console.log('product: ' + req_body.products);
-    console.log('product: ' + req_body.product_id);
+
     let product_id = req_body.product_id;
     let products = req_body.products;
 
@@ -72,9 +68,11 @@ function DataBaseUpload(request, response) {
                 'content-type': 'application/json'
             },
         }, (err, response, body) => {
-            if (response && response.statusCode === 200 && IsJsonString(response.body)) {
+            if (IsJsonString(response.body)) {
                     var supplementaries = JSON.parse(response.body)
-                   
+                    if (products == '') {
+                        return false
+                    }
                     products = products.split(',');
                     var product_not_available =  Object.assign([], supplementaries);
                     for (let i = 0; i < supplementaries.length; i++) {
@@ -166,9 +164,11 @@ function GetOrders(orders) {
 
 function TESTSupplementaries(product_id, first_screan, order_id, mongo_id, product_id_item){
     if (first_screan.length == 0) {
-   console.log('Пытаюсь удалить');
-        return true;
-}
+        ORDER.deleteOne({
+                _id: mongo_id
+        }, function(err, orders) {console.log('remove')});
+        return true
+    }
     for (let i = 0; i < first_screan.length; i++) {
         AvailProduct(first_screan[i], order_id, mongo_id, product_id_item)
     }  
@@ -198,7 +198,6 @@ function AvailProduct(product_id, order_id, mongo_id, product_id_item){
         var obj = {}
 
         Request(`https://${id}:${key}@shop-cn677.myinsales.ru/admin/products/${product_id}.json`, (err, response, body) => {
-            console.log(err);
             if (IsJsonString(response.body)) {
                 var productsResponce = JSON.parse(response.body);
                 if (productsResponce.is_hidden) {
@@ -230,10 +229,9 @@ function DataBaseUpDate(product_id, order_id, mongo_id, product_id_item) {
         if (err) return console.error(err);
         
        if (orders[0].first_screan.length == 0) {
-           console.log('Не могу удалить');
-       //  ORDER.deleteOne({
-        //    _id: mongo_id
-        //}, function(err, orders) {console.log('remove')});
+         ORDER.deleteOne({
+            _id: mongo_id
+        }, function(err, orders) {console.log('remove')});
         
         } else {
             var arr = orders[0].first_screan;
