@@ -72,7 +72,7 @@ function DataBaseUpload(request, response) {
                 'content-type': 'application/json'
             },
         }, (err, response, body) => {
-            if (IsJsonString(response.body)) {
+            if (response && response.statusCode === 200 && IsJsonString(response.body)) {
                     var supplementaries = JSON.parse(response.body)
                    
                     products = products.split(',');
